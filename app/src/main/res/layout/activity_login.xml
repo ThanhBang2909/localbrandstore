@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="Login"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_edt_design"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:hint="   Email"
+        android:minHeight="50dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#616161"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="TextContrastCheck"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_edt_design"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:hint="   Password"
+        android:inputType="textPassword"
+        android:minHeight="50dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/emailLogin"
+        app:layout_constraintStart_toStartOf="@+id/emailLogin"
+        app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
+
+    <TextView
+        android:id="@+id/tvForgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Forgot password ?"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/passwordLogin"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+
+    <LinearLayout
+        android:id="@+id/Sign_FB"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_edt_design"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPass">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/facebook" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="Facebook"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Sign_GG"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/bg_edt_design"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toEndOf="@+id/Sign_FB"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/google" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="Google"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_edt_design"
+        android:text="Login"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sign_FB" />
+
+    <Button
+        android:id="@+id/btnBackRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_edt_design"
+        android:text="Register"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

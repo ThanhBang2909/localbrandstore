@@ -1,60 +1,95 @@
 package com.example.localbrandstore.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.example.localbrandstore.R
+import com.example.localbrandstore.util.AndroidToast
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var editProfile: LinearLayout
+    private lateinit var imgAvatar: ImageView
+    private lateinit var tvFullName: TextView
+    private lateinit var changePassword: TextView
+    private lateinit var transactionHistory: TextView
+    private lateinit var btnSignOut: Button
+    private var userEmail: String = ""
+    private var userFullName: String = ""
+    private var userPassword: String = ""
+    private var userAddress: String = ""
+    private var userPhone: String = ""
+    private val androidToast: AndroidToast?= AndroidToast()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        initView(view)
+        eventClick()
+        readUserDataLocal()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    private fun eventClick(){
+
+        editProfile.setOnClickListener{
+            val intent = Intent(context, EditProfileActivity::class.java);
+            val bundleProfile = Bundle();
+            bundleProfile.putString("name", userFullName);
+            bundleProfile.putString("address", userAddress);
+            bundleProfile.putString("phone", userPhone);
+            bundleProfile.putString("email", userEmail);
+            intent.putExtras(bundleProfile);
+            startActivity(intent);
+        }
+
+        changePassword.setOnClickListener{
+            val intent = Intent(context, ChangePasswordActivity::class.java);
+            val bundleProfile = Bundle();
+            bundleProfile.putString("password", userPassword);
+            intent.putExtras(bundleProfile);
+            startActivity(intent);
+        }
+
     }
+
+
+    private fun readUserDataLocal(){
+        val sharedPreferences = context?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+
+        if (sharedPreferences != null) {
+            userEmail = sharedPreferences.getString("user_email", null).toString()
+            userFullName = sharedPreferences.getString("user_fullName", null).toString()
+            userPassword = sharedPreferences.getString("user_password", null).toString()
+            userAddress = sharedPreferences.getString("user_address", null).toString()
+            userPhone = sharedPreferences.getString("user_phone", null).toString()
+            tvFullName.text = userFullName
+        }
+
+    }
+
+
+    private fun initView(view: View){
+        editProfile = view.findViewById(R.id.editProfile);
+        imgAvatar = view.findViewById(R.id.imgAvartar);
+        tvFullName = view.findViewById(R.id.tvNameCus);
+        changePassword = view.findViewById(R.id.changePassword);
+        btnSignOut = view.findViewById(R.id.btnSignOut);
+        transactionHistory = view.findViewById(R.id.Transaction_history);
+    }
+
 }
